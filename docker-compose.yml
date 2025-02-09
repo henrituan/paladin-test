@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: paladin_test_mysql
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=paladin
+      - MYSQL_DATABASE=paladin
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=paladin
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
