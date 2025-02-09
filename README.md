@@ -32,6 +32,9 @@ $ npm run test
 - Create new client (`CreateClientCommand`)
 - Unit tests
 
+## Demo
+https://www.loom.com/share/10c2fad55d5c4eaf9ef675e5ee3250aa
+
 ## Todo
 
 - Update client
