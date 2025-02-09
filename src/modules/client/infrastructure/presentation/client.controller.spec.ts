@@ -30,25 +30,23 @@ describe('ClientController', () => {
 
   describe('findOne', () => {
     it('should return an client when a valid ID is provided', async () => {
-      const clientId = 12;
-      const expectedClient = { id: clientId, name: 'John Doe' };
+      const expectedClient = { id: '12', name: 'John Doe' };
 
       jest.spyOn(queryBus, 'execute').mockResolvedValue(expectedClient);
 
-      const result = await controller.findOne(clientId);
+      const result = await controller.findOne('12');
 
       expect(result).toEqual(expectedClient);
     });
 
     it('should throw an error if ID is not valid', async () => {
-      const clientId = 20;
-      const errorMessage = 'Client not found with id 20';
+      const errorMessage = 'Client not found';
 
       jest
         .spyOn(queryBus, 'execute')
         .mockRejectedValue(new Error(errorMessage));
 
-      await expect(controller.findOne(clientId)).rejects.toThrow(errorMessage);
+      await expect(controller.findOne('30')).rejects.toThrow(errorMessage);
     });
   });
 });

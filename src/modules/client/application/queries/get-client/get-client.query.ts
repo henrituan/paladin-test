@@ -22,8 +22,13 @@ export class GetClientHandler
   ) {}
 
   async execute(query: GetClientQuery) {
-    const entity = await this.clientRepository.findById(query.id);
-    return domainToView(entity);
+    try {
+      const entity = await this.clientRepository.findById(query.id);
+      return domainToView(entity);
+    } catch {
+      // todo: handle error
+      throw new Error(`Client ${query.id} not found`);
+    }
   }
 }
 

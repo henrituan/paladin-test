@@ -24,7 +24,7 @@ describe('GetClientHandler', () => {
 
     it('should throw error with wrong id', async () => {
       const query = new GetClientQuery(30);
-      const error = new Error('Client not found with id 30');
+      const error = new Error('Client 30 not found');
 
       await expect(handler.execute(query)).rejects.toThrow(error);
     });
