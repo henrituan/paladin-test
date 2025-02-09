@@ -23,6 +23,28 @@ export class ClientRepository implements IClientRepository {
 
     return toDomain(clientsPrisma);
   }
+
+  async update(client: Client) {
+    const clientsPrisma = toPrisma(client);
+
+    await this.prismaService.clients.update({
+      where: {
+        id: client.getId(),
+      },
+      data: clientsPrisma,
+    });
+  }
+
+  async create(client: Client) {
+    const clientsPrisma = toPrisma(client);
+
+    await this.prismaService.clients.create({
+      data: {
+        firstName: clientsPrisma.firstName,
+        lastName: clientsPrisma.lastName,
+      },
+    });
+  }
 }
 
 function toDomain(clientsPrisma: ClientsPrisma) {
@@ -31,4 +53,12 @@ function toDomain(clientsPrisma: ClientsPrisma) {
     firstName: clientsPrisma.firstName,
     lastName: clientsPrisma.lastName,
   });
+}
+
+function toPrisma(client: Client) {
+  return {
+    id: client.getId(),
+    firstName: client.getFirstName(),
+    lastName: client.getLastName(),
+  };
 }

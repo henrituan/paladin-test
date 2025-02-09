@@ -7,6 +7,7 @@ import { CLIENT_REPOSITORY_TOKEN } from './client/domain/ports/tokens';
 import { ClientRepository } from './client/infrastructure/persistence/client.repository';
 
 import { PrismaService } from '../databases/prisma.service';
+import { CreateClientCommandHandler } from './client/application/commands/create-client/create-client.command';
 import { ClientController } from './client/infrastructure/presentation/client.controller';
 
 @Module({
@@ -14,6 +15,7 @@ import { ClientController } from './client/infrastructure/presentation/client.co
   controllers: [ClientController],
   providers: [
     GetClientHandler,
+    CreateClientCommandHandler,
     {
       provide: CLIENT_REPOSITORY_TOKEN,
       useClass: ClientRepository,

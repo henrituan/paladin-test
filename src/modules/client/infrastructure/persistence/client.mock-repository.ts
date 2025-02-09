@@ -19,4 +19,14 @@ export class ClientMockRepository implements IClientRepository {
     console.log('Returning mock Client');
     return Promise.resolve(mockClient);
   }
+
+  update() {
+    console.log('Client updated');
+    return Promise.resolve();
+  }
+
+  create() {
+    console.log('Client created');
+    return Promise.resolve();
+  }
 }
